@@ -39,12 +39,12 @@ public class MarketMetrics
 
     public decimal BidAskSprdPct => AskPrice == 0 ? 1 : (AskPrice - BidPrice) / AskPrice;
 
-    public int RoundingAccuracy => _askPriceDecimals > _bidPriceDecimals ? _askPriceDecimals : _bidPriceDecimals;
+    public int RoundingAccuracy => new int[] { _askPriceDecimals, _bidPriceDecimals }.Max();
 
     public override string ToString()
     {
-        return $"Bid: {BidPrice} \t \t Mid: {MidPrice} \t \t Ask: {AskPrice} \n" +
-            $"Bid-Ask spread: {BidAskSpreadPrice} => ~{100 * Math.Round(BidAskSprdPct * 1000) / 1000}%";
+        return $"[B]id: {BidPrice} \t \t [M]id: {MidPrice} \t \t [A]sk: {AskPrice} \n" +
+            $"Spread (ask-bid): {BidAskSpreadPrice} => ~{100 * Math.Round(BidAskSprdPct * 1000) / 1000}%";
     }
 
     public string ToVisualStr(decimal? lowerLimit)
@@ -53,6 +53,7 @@ public class MarketMetrics
         // LL - Bid -- Mid --- Ask
         //
         int totalUnitSpread = 0;
+        if (lowerLimit > BidPrice) { throw new Exception("LL may not exceed BidPrice"); }
         if (lowerLimit == null)
         {
             lowerLimit = Math.Floor(BidPrice);
