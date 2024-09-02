@@ -32,7 +32,8 @@ Resources (hummingbot)
              - if p < 0 (negative corr) eg: EUR - USD(C) => reduces combined volatility
              - if p =~ 0 (no corr)
              - if p > 0 (correlated) => increases combined volatility
-               - crypto <> crypto : highly correlated (p =~ 0.7) eg: σ(LTC-BTC) =~ sqrt(σ_LTC² + σ_BTC² + 2 * 0.7 * σ_LTC * σ_BTC)
+               - crypto <> crypto : (assume) highly correlated (p =~ 0.7) eg: σ(LTC-BTC) =~ sqrt(σ_LTC² + σ_BTC² + 2 * 0.7 * σ_LTC * σ_BTC)
+               - [Check crypto correlations](https://www.blockchaincenter.net/en/crypto-correlation-tool)
 ​
 
 - # General MM flow
