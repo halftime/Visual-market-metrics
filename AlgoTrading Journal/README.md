@@ -24,7 +24,7 @@ Resources (hummingbot)
           - could be skewed towards higher volume side
       - Spread = lowest(Ask price) - highest(Bid price)
           - Ask (+AskSpread) > MidPrice > (-BidSpread) Bid
-          - scales with risk/volality
+          - scales with risk/Volatility
       - Volatility (σ)
           - Calculate based on rolling timeframe(s): eg: σ_1min , σ_5min, σ_15min
              - Upscaling eg (tgt 300s limit order timeframe): σ_1min to 5min =~ sqrt(5) * σ_1min
@@ -33,7 +33,7 @@ Resources (hummingbot)
              - if p =~ 0 (no corr)
              - if p > 0 (correlated) => increases combined volatility
                - crypto <> crypto : (assume) highly correlated (p =~ 0.7) eg: σ(LTC-BTC) =~ sqrt(σ_LTC² + σ_BTC² + 2 * 0.7 * σ_LTC * σ_BTC)
-               - [Check crypto correlations](https://www.blockchaincenter.net/en/crypto-correlation-tool)
+               - [crypto correlation matrix](https://www.blockchaincenter.net/en/crypto-correlation-tool)
 ​
 
 - # General MM flow
@@ -59,12 +59,61 @@ Resources (hummingbot)
 
 # Inventory
 
-In following example the inventory is known, as is target inventory
-
+***inventory example***
 ![actual inventory](https://github.com/user-attachments/assets/1ff5773c-cce4-48ed-acec-a196ed7f004f)
 
-Bottom graphs represent respective Bid(buy) / Ask (Sell) orders in units required to reach target inventory
+## Target inventory
+For single pair MM, usually 50:50% on each side makes sense
 
+For more broad trading inventories...
+There's few fiat and stable coins compared to the thousands of crypto tokens being traded. Cryptos hold significant inventory risk vs stables
+A 60 stable(or fiat) / 40 crypto inventory (vs 50:50), could have benifits:
+- More liquidity free to move around (expect to get stuck with some illiquid crypto inventory, esp in high spread, small markets)
+- The stable-stable markets (EG USDC-USD) are very liquid and fairly low risk (inventory) to MM
+- However.. in stress scenarios stablecoins can depeg from NAV
+  - Choppy market that revert to mean? ✔
+
+
+I'm trading 5 stables and 10 cryptos
+AUM ~1K eur. (min)trade: 6€, so ~167 units (~6€ = 1 orderunit) of inventory.
+
+- Stable tgt inventory (60% = 5 * 12% = 100 units)
+    - eur (fiat)  20 units  
+    - usd (fiat)  20 units  
+    - gbp (fiat)  20 units
+    - usdt        20 units  
+    - usdc        20 units  
+    
+ 
+Note one stable currency can trade against a ton of different assets. On this exchange all fiat currencies are traded against USDC, amongst others:
+ - BTC-USDC
+ - USDC-USD
+ - USDC-USDT
+ - ETH-USDC
+ - SOL-USDC
+ - XRP-USDC
+ - USDC-EUR
+ - ... (85 pairs in total)
+
+In this case it could be good to overweight USDC as it stands on the crossroad of 3 fiat currencies (EUR, USD, GBP)
+    - Any asset can be over- or underweighted to balance inventory risk, as preffered
+
+- Adjusted stable tgt inventory (60% = 100 units):
+    - eur (fiat)  15 units    (-5)
+    - usd (fiat)  15 units    (-5)
+    - gbp (fiat)  15 units    (-5)
+    - usdt        20 units    (0)
+    - usdc        35 units    (+15)
+    
+- Crypto tgt inventory (40% = 10 * 4%) : 10 * 6.6 units
+   - Since trade size = 1 unit, Inventory can range from 0 - 6..7?--8? Depends on allowed deviation.
+   - 
+
+
+
+
+
+***graphs represent respective Bid(buy) / Ask (Sell) orders (in units) to reach target inventory***
 ![image](https://github.com/user-attachments/assets/aa3305b0-4e06-4759-8c1f-7c74fd5f7c17)
 
 
