@@ -97,7 +97,7 @@ Note one stable currency can trade against a ton of different assets. On this ex
  - ... (85 pairs in total)
 
 In this case it could be good to overweight USDC as it stands on the crossroad of 3 fiat currencies (EUR, USD, GBP)
-    - Any asset can be over- or underweighted to balance inventory risk, as preffered
+- Any asset can be over- or underweighted to balance inventory risk, as preffered
 
 - Adjusted stable tgt inventory (60% = 100 units):
     - eur (fiat)  15 units    (-5)
