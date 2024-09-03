@@ -60,7 +60,8 @@ Resources (hummingbot)
 # Inventory
 
 ***inventory example***
-![actual inventory](https://github.com/user-attachments/assets/1ff5773c-cce4-48ed-acec-a196ed7f004f)
+![363998068-f98f4afa-289d-4910-9483-134e2a0835c1](https://github.com/user-attachments/assets/e3fda990-d751-4503-9018-b11203f5e774)
+
 
 ## Target inventory
 For single pair MM, usually 50:50% on each side makes sense
