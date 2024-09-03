@@ -76,14 +76,14 @@ A 60 stable(or fiat) / 40 crypto inventory (vs 50:50), could have benifits:
 
 
 I'm trading 5 stables and 10 cryptos
-AUM ~1K eur. (min)trade: 6€, so ~167 units (~6€ = 1 orderunit) of inventory.
+AUM ~1K eur. (min)trade: 6€
 
-- Stable tgt inventory (60% = 5 * 12% = 100 units)
-    - eur (fiat)  20 units  
-    - usd (fiat)  20 units  
-    - gbp (fiat)  20 units
-    - usdt        20 units  
-    - usdc        20 units  
+- Stable tgt inventory (60% = 5 * 12%)
+    - eur (fiat)  12%
+    - usd (fiat)  12%  
+    - gbp (fiat)  12%
+    - usdt        12%  
+    - usdc        12%  
     
  
 Note one stable currency can trade against a ton of different assets. On this exchange all fiat currencies are traded against USDC, amongst others:
@@ -99,16 +99,14 @@ Note one stable currency can trade against a ton of different assets. On this ex
 In this case it could be good to overweight USDC as it stands on the crossroad of 3 fiat currencies (EUR, USD, GBP)
 - Any asset can be over- or underweighted to balance inventory risk, as preffered
 
-- Adjusted stable tgt inventory (60% = 100 units):
-    - eur (fiat)  15 units    (-5)
-    - usd (fiat)  15 units    (-5)
-    - gbp (fiat)  15 units    (-5)
-    - usdt        20 units    (0)
-    - usdc        35 units    (+15)
+- Adjusted stable tgt inventory (60%):
+    - eur (fiat)  11%    (-1 %)
+    - usd (fiat)  11%    (-1 %)
+    - gbp (fiat)  11%    (-1 %)
+    - usdt        12%    (0 )
+    - usdc        15%    (+3 %)
     
-- Crypto tgt inventory (40% = 10 * 4%) : 10 * 6.6 units
-   - Since trade size = 1 unit, Inventory can range from 0 - 6..7?--8? Depends on allowed deviation.
-   - 
+- Crypto tgt inventory (40% = 10 * 4%)
 
 
 
