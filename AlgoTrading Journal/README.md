@@ -125,6 +125,8 @@ buyingQty (dec): 0
 boughtQty (dec): 0
 sellingQty (dec): 0.1937
 soldQty (dec): 0
-complTime (long): none (timestamp if order done -> remove order from list)
+completionTime (long): none (timestamp if order done -> remove order from list)
+creationTime (long): (timestamp creation)
+expirationTime (long): (future timestamp of expiry)
 ```
  
