@@ -79,32 +79,29 @@ I'm trading 5 stables and 10 cryptos
 AUM ~1K eur. (min)trade: 6€
 
 - Stable tgt inventory (60% = 5 * 12%)
-    - eur (fiat)  12%
-    - usd (fiat)  12%  
-    - gbp (fiat)  12%
-    - usdt        12%  
-    - usdc        12%  
+```
+eur (fiat)  12%
+usd (fiat)  12%  
+gbp (fiat)  12%
+usdt        12%  
+usdc        12%
+```
     
  
 Note one stable currency can trade against a ton of different assets. On this exchange all fiat currencies are traded against USDC, amongst others:
- - BTC-USDC
- - USDC-USD
- - USDC-USDT
- - ETH-USDC
- - SOL-USDC
- - XRP-USDC
- - USDC-EUR
- - ... (85 pairs in total)
+```
+ BTC-USDC
+ USDC-USD
+ USDC-USDT
+ ETH-USDC
+ SOL-USDC
+ XRP-USDC
+ USDC-EUR
+ ... (85 pairs in total)
+```
 
 In this case it could be good to overweight USDC as it stands on the crossroad of 3 fiat currencies (EUR, USD, GBP)
 - Any asset can be over- or underweighted to balance inventory risk, as preffered
-
-- Adjusted stable tgt inventory (60%):
-    - eur (fiat)  11%    (-1 %)
-    - usd (fiat)  11%    (-1 %)
-    - gbp (fiat)  11%    (-1 %)
-    - usdt        12%    (0 )
-    - usdc        15%    (+3 %)
     
 - Crypto tgt inventory (40% = 10 * 4%)
 
@@ -114,6 +111,20 @@ In this case it could be good to overweight USDC as it stands on the crossroad o
 
 *Make sure your the sum total inventory targets <= 100%* 
 
-
-
+# Websockets
+MM can receive instantanious websocket stream which pushes tickbased market data, orderupdates, balance updates
+- Market tickets
+      - Current bid & ask price (& qty)
+- Order Updates
+    - Example initial order (unfilled):
+```
+OrderType (str): "type:limit"
+BuyingCurrency (str): "USDC" 
+SellingCurrency (str): "AAVE"
+buyingQty (dec): 0
+boughtQty (dec): 0
+sellingQty (dec): 0.1937
+soldQty (dec): 0
+complTime (long): none (timestamp if order done -> remove order from list)
+```
  
