@@ -2,6 +2,7 @@ Resources (hummingbot)
 - https://hummingbot.org/academy-content/guide-to-the-avellaneda--stoikov-strategy/
 - https://hummingbot.org/academy-content/how-to-get-good-at-market-making/
 - https://hummingbot.org/faq/
+- https://documenter.getpostman.com/view/3653795/SVfWN6KS
 
 
 - # Definitions:
@@ -59,36 +60,28 @@ Resources (hummingbot)
 
 # Inventory
 
-***inventory example***
-![363998068-f98f4afa-289d-4910-9483-134e2a0835c1](https://github.com/user-attachments/assets/e3fda990-d751-4503-9018-b11203f5e774)
-
-
 ## Target inventory
 For single pair MM, usually 50:50% on each side makes sense
 
 For more broad trading inventories...
-There's few fiat and stable coins compared to the thousands of crypto tokens being traded. Cryptos hold significant inventory risk vs stables
+
 A 60 stable(or fiat) / 40 crypto inventory (vs 50:50), could have benifits:
+
 - More liquidity free to move around (expect to get stuck with some illiquid crypto inventory, esp in high spread, small markets)
 - The stable-stable markets (EG USDC-USD) are very liquid and fairly low risk (inventory) to MM
 - However.. in stress scenarios stablecoins can depeg from NAV
   - Choppy market that revert to mean? ✔
 
+## Example
 
-I'm trading 5 stables and 10 cryptos
-AUM ~1K eur. (min)trade: 6€
+***inventory example - freshly funded with euros from bank***
+![363998068-f98f4afa-289d-4910-9483-134e2a0835c1](https://github.com/user-attachments/assets/e3fda990-d751-4503-9018-b11203f5e774)
 
-- Stable tgt inventory (60% = 5 * 12%)
-```
-eur (fiat)  12%
-usd (fiat)  12%  
-gbp (fiat)  12%
-usdt        12%  
-usdc        12%
-```
-    
- 
-Note one stable currency can trade against a ton of different assets. On this exchange all fiat currencies are traded against USDC, amongst others:
+***inventory example - During market making, inventories moving towards target %***
+![afbeelding](https://github.com/user-attachments/assets/82fb5a3e-6dfa-4760-92ab-7fd0ab5fa033)
+
+
+On this exchange all fiat currencies are traded against USDC, amongst others:
 ```
  BTC-USDC
  USDC-USD
@@ -101,18 +94,28 @@ Note one stable currency can trade against a ton of different assets. On this ex
 ```
 
 In this case it could be good to overweight USDC as it stands on the crossroad of 3 fiat currencies (EUR, USD, GBP)
-- Any asset can be over- or underweighted to balance inventory risk, as preffered
-    
-- Crypto tgt inventory (40% = 10 * 4%)
+- Any asset can be over- or underweighted to balance inventory (risk) or accumulate specified assets
 
-***Inventory overview***
+***Inventory overview spreadsheet***
 
 ![afbeelding](https://github.com/user-attachments/assets/cb253a7e-13d0-48e5-b015-0bfb856c996c)
 
 *Make sure your the sum total inventory targets <= 100%* 
 
+# Rest API & Limits
+During testing w order placement received this reply from exchange REST API:
+
+```{"message":"This endpoint is rate limited to 20 attempts per 60 seconds. Limits can be increased by contacting Customer Support."}```
+
+Turns out there's a lot of limits on API usage.. Long story short, stay under the damn limit.
+
+## Limit Tips:
+- Place orders further out (expiry time) & modify existing orders instead of replacing them
+- Only place new orders for expired/closed orders
+
+
 # Websockets
-MM can receive instantanious websocket stream which pushes tickbased market data, orderupdates, balance updates
+MM can receive instantanious websocket stream which pushes tickbased market data, orderupdates, balance updates, ...
 - Market tickets
       - Current bid & ask price (& qty)
 - Order Updates
