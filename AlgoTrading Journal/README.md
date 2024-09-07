@@ -1,8 +1,10 @@
-Resources (hummingbot)
+## Resources Hummingbot
 - https://hummingbot.org/academy-content/guide-to-the-avellaneda--stoikov-strategy/
 - https://hummingbot.org/academy-content/how-to-get-good-at-market-making/
 - https://hummingbot.org/faq/
+## Resources CoinMetro 
 - https://documenter.getpostman.com/view/3653795/SVfWN6KS
+- https://help.coinmetro.com/hc/en-gb/articles/6844029270685-How-to-Use-Coinmetro-s-Trading-API
 
 
 - # Definitions:
