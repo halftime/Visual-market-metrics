@@ -110,10 +110,25 @@ During testing w order placement received this reply from exchange REST API:
 ```{"message":"This endpoint is rate limited to 20 attempts per 60 seconds. Limits can be increased by contacting Customer Support."}```
 
 Turns out there's a lot of limits on API usage.. Long story short, stay under the damn limit.
+- (also begged costumer service to increase the limit)
 
 ## Limit Tips:
 - Place orders further out (expiry time) & modify existing orders instead of replacing them
 - Only place new orders for expired/closed orders
+- Use timestamps to set hard limits
+
+## Limit order tracking
+- General flow:
+    - New limit order {Buy X, sell Y, sellingQty: xxx, buyingQty: yyy}
+    - Post req to exchange API
+        - OK, order placed?
+        - update the orderId & timestamp (of expiry)
+    - *wait till someone hits your order*
+    - new orderstatus from ws:
+        - update order, soldQty, boughtQty, timestamps, ..
+    - if expirytime < current timestamp, the order is expired - check this client side
+    - (optionally request order status w post request)
+      
 
 
 # Websockets
